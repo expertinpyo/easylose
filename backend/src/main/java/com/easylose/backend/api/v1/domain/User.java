@@ -56,6 +56,13 @@ public class User {
 
   private String profileImg;
 
+  private String providerId;
+
+  private String provider;
+
+  @Setter
+  private String refreshJws;
+
   @CreatedDate
   @Column(name="created_at", updatable = false, nullable = false)
   private LocalDateTime createdAt;
@@ -65,7 +72,7 @@ public class User {
   private LocalDateTime updatedAt;
 
   @Builder
-  public User(Long id, String name, Gender gender, String birthdate, String loginType, String authorizationCode, ActivityLevel activityLevel, Goal goal, Float dailyCalorie, Float dailyCarb, Float dailyProtein, Float dailyFat, String profileImg, LocalDateTime createdAt, LocalDateTime updatedAt) {
+  public User(Long id, String name, Gender gender, String birthdate, String loginType, String authorizationCode, ActivityLevel activityLevel, Goal goal, Float dailyCalorie, Float dailyCarb, Float dailyProtein, Float dailyFat, String profileImg, String providerId, String provider, LocalDateTime createdAt, LocalDateTime updatedAt) {
     this.id = id;
     this.name = name;
     this.gender = gender;
@@ -79,6 +86,8 @@ public class User {
     this.dailyProtein = dailyProtein;
     this.dailyFat = dailyFat;
     this.profileImg = profileImg;
+    this.providerId = providerId;
+    this.provider = provider;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
   }
@@ -92,6 +101,11 @@ public class User {
     this.dailyFat = requestDto.getDailyFat();
   }
 
+  public void updateProvider(String name, String profileImg, String providerId, String provider) {
+    this.name = name;
+    this.profileImg = profileImg;
+    this.providerId = providerId;
+    this.provider = provider;
+  }
+
 }
-
-
