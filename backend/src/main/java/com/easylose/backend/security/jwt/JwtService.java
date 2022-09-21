@@ -1,21 +1,17 @@
 package com.easylose.backend.security.jwt;
 
-import java.util.Date;
-import java.util.List;
-
-import javax.crypto.SecretKey;
-
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
-
 import com.easylose.backend.api.v1.domain.User;
 import com.easylose.backend.api.v1.repository.UserRepository;
-
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import java.util.Date;
+import java.util.List;
+import javax.crypto.SecretKey;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 @Service
 public class JwtService {
@@ -36,10 +32,7 @@ public class JwtService {
   public TokenDto create(User user) {
     String accessJws = createJws(accessEncodeKey, 30, user, "AT");
     String refreshJws = createJws(refreshEncodeKey, 60 * 24 * 700, null, "RT");
-    return TokenDto.builder()
-        .accessJws(accessJws)
-        .refreshJws(refreshJws)
-        .build();
+    return TokenDto.builder().accessJws(accessJws).refreshJws(refreshJws).build();
   }
 
   public String refreshAccessJws(String refreshJws) {
@@ -85,10 +78,7 @@ public class JwtService {
   private JwtValidateResultEnum validate(String jws, String encodeKey) {
     SecretKey secretKey = Keys.hmacShaKeyFor(Decoders.BASE64URL.decode(encodeKey));
     try {
-      Jwts.parserBuilder()
-          .setSigningKey(secretKey)
-          .build()
-          .parseClaimsJws(jws);
+      Jwts.parserBuilder().setSigningKey(secretKey).build().parseClaimsJws(jws);
 
       return JwtValidateResultEnum.OK;
 
@@ -102,11 +92,14 @@ public class JwtService {
 
   public Long getId(String accessJws) {
     SecretKey secretKey = Keys.hmacShaKeyFor(Decoders.BASE64URL.decode(accessEncodeKey));
-    Number id = (Integer) Jwts.parserBuilder()
-        .setSigningKey(secretKey)
-        .build()
-        .parseClaimsJws(accessJws)
-        .getBody().get("id");
+    Number id =
+        (Integer)
+            Jwts.parserBuilder()
+                .setSigningKey(secretKey)
+                .build()
+                .parseClaimsJws(accessJws)
+                .getBody()
+                .get("id");
     return id.longValue();
   }
 }

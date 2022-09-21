@@ -1,26 +1,22 @@
 package com.easylose.backend.security.jwt;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
-
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.GenericFilterBean;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -44,18 +40,12 @@ public class JwtAuthFilter extends GenericFilterBean {
           break;
 
         case EXPIRED:
-          setErrorResponse(
-              response,
-              HttpServletResponse.SC_UNAUTHORIZED,
-              "Refresh Token Expired");
+          setErrorResponse(response, HttpServletResponse.SC_UNAUTHORIZED, "Refresh Token Expired");
 
           return;
 
         case ERROR:
-          setErrorResponse(
-              response,
-              HttpServletResponse.SC_UNAUTHORIZED,
-              "Invalid Refresh Token");
+          setErrorResponse(response, HttpServletResponse.SC_UNAUTHORIZED, "Invalid Refresh Token");
 
           return;
       }
@@ -72,26 +62,21 @@ public class JwtAuthFilter extends GenericFilterBean {
     switch (jwtService.validateAccessJws(accessJws)) {
       case OK:
         Long id = jwtService.getId(accessJws);
-        Authentication auth = new UsernamePasswordAuthenticationToken(
-          id, "", Arrays.asList(new SimpleGrantedAuthority("ROLE_USER")));
+        Authentication auth =
+            new UsernamePasswordAuthenticationToken(
+                id, "", Arrays.asList(new SimpleGrantedAuthority("ROLE_USER")));
 
         SecurityContextHolder.getContext().setAuthentication(auth);
 
         break;
 
       case EXPIRED:
-        setErrorResponse(
-            response,
-            HttpServletResponse.SC_UNAUTHORIZED,
-            "Access Token Expired");
+        setErrorResponse(response, HttpServletResponse.SC_UNAUTHORIZED, "Access Token Expired");
 
         return;
 
       case ERROR:
-        setErrorResponse(
-            response,
-            HttpServletResponse.SC_UNAUTHORIZED,
-            "Invalid Access Token");
+        setErrorResponse(response, HttpServletResponse.SC_UNAUTHORIZED, "Invalid Access Token");
 
         return;
     }

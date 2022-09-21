@@ -1,13 +1,11 @@
 package com.easylose.backend.security.oauth2;
 
+import java.util.HashMap;
+import java.util.Map;
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import lombok.AccessLevel;
 
 @ToString
 @Builder(access = AccessLevel.PRIVATE)
