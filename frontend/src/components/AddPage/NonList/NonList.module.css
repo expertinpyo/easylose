@@ -1,0 +1,37 @@
+.img {
+  width: 40%;
+  -webkit-animation: thunderstone-icon-move 5s ease-in-out infinite;
+  animation: thunderstone-icon-move 5s ease-in-out infinite;
+  position: relative;
+  max-width: 294px;
+}
+
+.loader {
+  position: relative;
+  top: 20%;
+}
+
+.shadow {
+  width: 40%;
+  height: 10px;
+  background: #000;
+  opacity: 0.1;
+  left: 28%;
+  border-radius: 50%;
+  animation: shadow 0.5s linear infinite;
+  position: relative;
+}
+
+@-webkit-keyframes thunderstone-icon-move {
+  50% {
+    -webkit-transform: translateY(-8px);
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes thunderstone-icon-move {
+  50% {
+    -webkit-transform: translateY(-8px);
+    transform: translateY(-8px);
+  }
+}

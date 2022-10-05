@@ -1,0 +1,107 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 9vh;
+}
+
+.mod_list {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1vh;
+}
+
+.mod_item {
+  padding-left: 2vw;
+  padding-right: 2vw;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: solid 1px var(--main-color);
+  font-size: 16px;
+  height: 5vh;
+}
+
+.value_and_button {
+  display: flex;
+}
+
+.chart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  flex-direction: column;
+}
+
+.itemList {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+}
+
+.item {
+  width: 20%;
+  aspect-ratio: 1/1;
+  color: white;
+  background: #7c83fd;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 5px;
+}
+.addButtonContainer {
+  width: 100%;
+  position: absolute;
+  bottom: 12vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.addButton {
+  width: 90%;
+  height: 5vh;
+  background: linear-gradient(
+    90deg,
+    var(--main-color) 44%,
+    var(--light-color) 88%
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  font-weight: 1000;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.initcontainer {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.initialize_percent_button {
+  padding: 10px;
+  background-color: var(--gray-color);
+  font-size: 1.1rem;
+  font-weight: bold;
+  width: 50%;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin-right: 10%;
+  margin-top: 2vh;
+}
