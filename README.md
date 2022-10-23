@@ -7,8 +7,6 @@ last modified on: 2022-10-06
 # Ease
 > Easy Lose
 
-`SSAFY 특화 프로젝트 A704`  
-
 ## 🎥 서비스 소개 영상
 [![Ease를 소개합니다](https://img.youtube.com/vi/xj-3bDGLxIg/0.jpg)](https://youtu.be/xj-3bDGLxIg) 
 
